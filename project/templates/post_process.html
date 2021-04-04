@@ -1,0 +1,242 @@
+<html>
+<head>
+  <style>
+    .rating {
+    float:left;
+    /* position:relative; */
+    /* width:850px; */
+}
+.rating span { 
+  /* float:center;   */
+  float:right;
+  margin-right:50px;
+ /* position: relative;  */
+} 
+.rating span input {
+    /* position: center; */
+    /* top:0px;
+    left:0px; */
+    /* float:center; */
+    opacity:0;
+}
+.rating span label {
+    display:inline-block;
+    width:50px;
+    height:40px;
+    text-align:center;
+    color:rgb(8, 24, 243);
+    background:#ccc;
+    font-size:30px;
+    margin-right:2px;
+    line-height:30px;
+    border-radius:50%;
+    -webkit-border-radius:50%;
+}
+.rating span:hover ~ span label,
+.rating span:hover label,
+.rating span.checked label,
+.rating span.checked ~ span label {
+    background:#F90;
+    color:#FFF;
+}
+.button {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+  </style>
+  
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<center><h1> Post Process Questionnaire</h1></center>
+  <br><br>
+<div class="rating">
+
+  
+  <h3>1. What is your age ?&emsp;&emsp;&emsp;<input type="text" id="other" name="other" > </h3>
+
+
+
+  <br><br><h3>2. Gender ?   </h3>
+          <input class="form-check-input" type="radio" value="true" id="male" name="gender" required>
+            <label class="form-check-label" for="male">
+              Male
+            </label><br><br>
+
+            <input class="form-check-input" type="radio" value="false" id="female" name="gender">
+            <label class="form-check-label" for="female">
+            Female
+            </label><br><br>
+
+            <input class="form-check-input" type="radio" value="false" id="transgender" name="gender">
+            <label class="form-check-label" for="transgender">
+            Transgender
+            </label><br><br>
+
+            <input class="form-check-input" type="radio" value="false" id="other" name="gender">
+            <label class="form-check-label" for="other">
+              c. Other &emsp;&emsp;&emsp;<input type="text" id="other" name="other" >   
+            </label><br><br>
+
+
+
+
+
+            <br><br><h3>3. Ethnicity/Race   </h3>
+            <input class="form-check-input" type="radio" value="true" id="r1" name="race" required>
+              <label class="form-check-label" for="r1">
+                European American/White
+              </label><br><br>
+  
+              <input class="form-check-input" type="radio" value="false" id="r2" name="race">
+              <label class="form-check-label" for="r2">
+                Latino/Hispanic
+              </label><br><br>
+  
+              <input class="form-check-input" type="radio" value="false" id="r3" name="race">
+              <label class="form-check-label" for="r3">
+                African American/Black
+              </label><br><br>
+
+              <input class="form-check-input" type="radio" value="false" id="r4" name="race">
+              <label class="form-check-label" for="r4">
+                Asian American
+              </label><br><br>
+
+              <input class="form-check-input" type="radio" value="false" id="r5" name="race">
+              <label class="form-check-label" for="r5">
+                Native American or Alaska Native 
+              </label><br><br>  
+
+              <input class="form-check-input" type="radio" value="false" id="r6" name="race">
+              <label class="form-check-label" for="r6">
+                Native Hawaiian or Pacific Islander 
+              </label><br><br>  
+
+              <input class="form-check-input" type="radio" value="false" id="r7" name="race">
+              <label class="form-check-label" for="r7">
+                Biracial &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="text" id="other" name="other" >
+              </label><br><br>
+              
+              <input class="form-check-input" type="radio" value="false" id="r8" name="race">
+              <label class="form-check-label" for="r8">
+                Multiracial &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<input type="text" id="other" name="other" >
+              </label><br><br>
+
+              <input class="form-check-input" type="radio" value="false" id="r9" name="race">
+              <label class="form-check-label" for="r9">
+                International(Mention the country) &emsp;&emsp;&emsp;<input type="text" id="other" name="race" >
+              </label><br><br>
+
+              <input class="form-check-input" type="radio" value="false" id="r10" name="race">
+              <label class="form-check-label" for="r10">
+                c. Other &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;<input type="text" id="other" name="other" >   
+              </label><br><br>
+
+              
+
+              <br><br><br><h3>4. Highest Level of Education or, if in college, Year in School ?&emsp;&emsp;&emsp;<input type="text" id="other" name="other" > </h3>
+              <div>
+              <br><br><br><h3>5. How easy or difficult was it for you to focus on the faces as they changed during the study?</h3>
+    <span><input type="radio" name="rating" id="str5" value="5"><label for="str5">5</label></span>
+        <span><input type="radio" name="rating" id="str4" value="4"><label for="str4">4</label></span>
+          <span><input type="radio" name="rating" id="str3" value="3"><label for="str3">3</label></span>
+    <span><input type="radio" name="rating" id="str2" value="2"><label for="str2">2</label></span>
+    <span><input type="radio" name="rating" id="str1" value="1"><label for="str1">1</label></span></div>
+    <br><br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Very Easy&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Very Difficult
+    
+
+    <br><br><br><h4> a. If you found the task difficult, please explain briefly why.</h4>
+    <center><textarea id="w3review" name="w3review" rows="4" cols="50">
+      Type your answer here... 
+      </textarea></center>
+
+
+    
+      <br><br><br><h3>6. How tired did you feel during the study?  </h3>
+        <span><input type="radio" name="rating" id="str5" value="5"><label for="str5">5</label></span>
+            <span><input type="radio" name="rating" id="str4" value="4"><label for="str4">4</label></span>
+              <span><input type="radio" name="rating" id="str3" value="3"><label for="str3">3</label></span>
+        <span><input type="radio" name="rating" id="str2" value="2"><label for="str2">2</label></span>
+        <span><input type="radio" name="rating" id="str1" value="1"><label for="str1">1</label></span>
+        <br><br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Not at all tired&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Very Tired
+    
+    
+    
+    
+        <br><br><h3>7. Did you ever lose focus during the study? If so, please explain. </h3>
+        <center><textarea id="w3review" name="w3review" rows="4" cols="50">
+          Type your answer here... 
+          </textarea></center>
+    
+
+
+          <br><br><h3>8. How did you determine when the faces became old [young]?   </h3>
+          <input class="form-check-input" type="radio" value="true" id="q41" name="q4" required>
+            <label class="form-check-label" for="q41">
+              a. I compared the old [young] faces to the initial young [old] faces
+            </label><br><br>
+
+            <input class="form-check-input" type="radio" value="false" id="q42" name="q4">
+            <label class="form-check-label" for="q42">
+             b. I compared the old [young] faces to my idea of how an old [young] person looks    
+            </label><br><br>
+
+            <input class="form-check-input" type="radio" value="false" id="q43" name="q4">
+            <label class="form-check-label" for="q43">
+              c. Other (Please explain)&emsp;&emsp;&emsp;<input type="text" id="other" name="other" >   
+            </label><br><br>
+
+
+            <br><br><br><h3>9. What do you believe the purpose of this experiment was? </h3>
+        <center><textarea id="w3review" name="w3review" rows="4" cols="50">
+          Type your answer here... 
+          </textarea></center>
+          <center><button class="button"name="submit" value="submit">Submit</button></center>
+      
+      
+
+      </div>
+<script>
+  $(document).ready(function(){
+    // Check Radio-box
+    $(".rating input:radio").attr("checked", false);
+
+    $('.rating input').click(function () {
+        $(".rating span").removeClass('checked');
+        $(this).parent().addClass('checked');
+    });
+
+    $('input:radio').change(
+      function(){
+        var userRating = this.value;
+        // alert(userRating);
+    }); 
+});
+</script>
+<script type="text/javascript">
+  function fnCheckRadio()
+  {   
+       var radYes=document.getElementById("consent-positive"); 
+       if(radYes.checked)
+       {              
+          return true;
+       }
+       else
+       {
+          alert("Please agree to the Terms and conditions to participate.");
+          return false;
+       }
+     return false;
+  }
+  
+  </script>
+</html>

@@ -1,0 +1,59 @@
+{% load static %}
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
+
+        <title>Instruction</title>
+
+<!-- <script language="javascript" type="text/javascript">
+    var timerid = 0;
+    var images = new Array(	"img1.jpg",
+                "img2.jpg",
+                "img3.jpg");
+    var countimages = 0;
+    function startTime()
+    {
+        if(timerid)
+        {
+            timerid = 0;
+        }
+        var tDate = new Date();
+        
+        if(countimages == images.length)
+        {
+            countimages = 0;
+        }
+        if(tDate.getSeconds() % 5 == 0)
+        {
+            document.getElementById("img1").src = images[countimages];
+        }
+        countimages++;
+        
+        timerid = setTimeout("startTime()", 1000);
+    }
+    </script> -->
+    
+    </head>
+    <body onload="startTime();">
+
+        <div>
+            Some space to test the page
+        </div>
+
+        <!-- This div block is for testing the images -->
+        <div>
+            <h1>Name - {{emp.name}}</h1>
+            <img src="{{emp.emp_image.url}}" alt="Smiley face" width="250" height="250">
+            <br />
+            <a href="{% url 'consent' %}">Go Back!!!</a>
+        <div>
+        
+        <main>
+            <h1><center>INSTRUCTION PAGE</center></h1>
+            <button><a href="{% url 'process' %}">Move to Process</a>Move to Process</button>
+            <img src="{% static '/home/pavithra/project/project/media/CFD-AF-213-126-N.jpg.jpg' %}" width="500" height="500" />
+
+        </main>
+        
+    </body>
+</html> 

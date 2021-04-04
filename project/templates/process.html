@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <meta charset="utf-8"> 
+        <title>Process</title>
+    </head>
+    <body>
+        <main>
+            <h1><center>PROCESS PAGE</center></h1>
+            <button><a href="{% url 'post_process' %}">Move to question</a>Move to Post Questionnaire</button>
+            {% for i in image%}
+            <img  src="{{i.image.url}}" alt="PIC">
+            hello
+            {% endfor %}
+        </main>
+    </body>
+</html> 

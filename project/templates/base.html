@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <meta charset="utf-8"> 
+        <title>{% block title %}Django website{% endblock %}</title>
+    </head>
+    <body>
+        <span><a href="{% url 'index' %}">Home</a></span>
+        <span><a href="{% url 'about' %}">About</a></span>
+        <span><a href="{% url 'consent' %}">Contact</a></span>
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+    </body>
+</html>

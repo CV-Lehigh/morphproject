@@ -1,0 +1,7 @@
+/env/*
+# might have personal data in the following
+project.sqlite3
+project/migrations/*
+# personal images in following
+/media/*
+project/media/*
