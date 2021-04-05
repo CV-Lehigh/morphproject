@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import os
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 from django.template import loader
 from django.http import HttpResponse
@@ -18,10 +19,8 @@ from django.views.generic import DetailView
 from .models import Employee
 
 class EmployeeImage(TemplateView):
-
     form = EmployeeForm
     template_name = 'emp_image.html'
-
     def post(self, request, *args, **kwargs):
 
         form = EmployeeForm(request.POST, request.FILES)
@@ -36,12 +35,42 @@ class EmployeeImage(TemplateView):
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
+@csrf_exempt
+def uploadMass(request):
+    form = EmployeeForm(request.POST or None, request.FILES or None)
+    context = {'title': 'welcome', 'form': form}
+    if form.is_valid():
+        form.save()
+        context = {'form': form, 'title': 'thanks'}
+    return render(request, 'emp_image.html', context)
+
+## path('emp-image/<int:pk>/',EmpImageDisplay.as_view(), name = 'display')
 class EmpImageDisplay(DetailView):
     model = Employee
     template_name = 'emp_image_display.html'
     context_object_name = 'emp'
 
-## done testing images
+## test see all images
+def allImages(request):
+    image_list = Employee.objects.all()
+    template = loader.get_template('allImages.html')
+    context = {"image_list":image_list}
+    return HttpResponse(template.render(context,request))
+
+## testing taking in post from jquery
+@csrf_exempt
+def do_something(request):
+    age = 1
+    if request.POST:
+        name = request.POST.getlist('name')[0]
+        age = request.POST.getlist('age')[0]
+
+    # can't get it to redirect right now but it should be fine, maybe redirect in jquery
+    return HttpResponseRedirect(reverse_lazy('display', kwargs={'pk': age}))
+
+## written as test to increment pk
+def NextImage(request, pk):
+    return HttpResponseRedirect(reverse_lazy('display', kwargs={'pk': pk+1}))
 
 def Showemp(request):
     resultsdisplay=EmployeeDetails.objects.all()
@@ -57,13 +86,5 @@ def process(request):
 def post_process(request):
     return render(request,'post_process.html')
 def process_page(request):
-    path = settings.MEDIA_ROOT
-    img_list = os.listdir(path+"/chicago/")
-    print(img_list)
-    context = {"images": img_list}
-    print("context",context)
-    # output=Image.objects.all()
-    # return render(request,'gallery.html',{"img":img, 'media_url':settings.MEDIA_URL})
-    # print("Result",result)
-    # return render(request,"process.html",{'Image':output,'media_url':settings.MEDIA_URL})
-    return render (request, 'process.html', {'Image ':context})
+    
+    return render (request, 'process.html')

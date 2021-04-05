@@ -1,0 +1,87 @@
+
+
+<input type="hidden" value="25" id="amount"/>
+<input type="text" value="0" id="count"/>
+<input type="button" value="Start" id="starter"/>
+<input type="button" value="Stop" id="stopper"/>
+<input type="button" value="reset" id="resetter"/>
+{% if image_list %}
+    <ul>
+    {% for emp in image_list %}
+
+        <img id = "{{emp.pk}}" src="{{emp.emp_image.url}}" alt="Smiley face" width="250" height="250" style="display: none;">
+        <div>{{emp.pk}}</div>
+        
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No images are available.</p>
+{% endif %}
+
+<!-- could use a view as the submit for what image was found to be "old" -->
+<!-- use jquery to set its value to the i counter and when submit just have i go through -->
+<!-- for any other variables, like max length I can set that to a invisible input value from django, then fetch it through jquery-->
+<!-- <form method = "post" enctype="multipart/form-data"> 
+    {% csrf_token %} 
+    {{ form.as_p }} 
+    <button type="submit">This image is old!</button> 
+</form> -->
+
+
+<input type="button" value="Image is old" id="old"/>
+
+
+<!-- need to bring in jquery here I guess -->
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<!-- MAKE SURE TO HARD REFRESH IF THIS IS NOT WORKING -->
+<script type='text/javascript'>
+    //from stack overflow
+    var amount=parseInt($('#amount').val());
+    var i = parseInt($('#count').val());
+    var tim;
+
+    function run(){
+        tim = setInterval(function(){
+            if(i>=amount){clearInterval(tim); return;}
+            $('#count').val(++i);
+            //the images are tagged with their id's so hide when id = i
+            $('#'+i).show();
+            $('#'+(i-1)).hide();
+            //$('#submitter').attr("href", ");
+        },1000);        
+    }
+
+        
+        run();
+
+    $('#old').click(function(){
+        $.ajax({
+        url:"/do_something",
+        type: "POST",
+        data: {name: "tom", age: 12},
+        success:function(response){ 
+            //return response.json(); 
+            window.location.replace('/emp-image/12/');
+        },
+        complete:function(){},
+        error:function (xhr, textStatus, thrownError){
+            alert("error doing something");
+        }
+    });
+    });
+
+    $('#stopper').click(function(){        
+        clearInterval(tim);
+    });
+
+    $('#resetter').click(function(){    
+        clearInterval(tim);    
+        i=0;
+        $('#count').val(i);
+    });
+
+    $('#starter').click(function(){        
+    clearInterval(tim);
+        run();
+    });
+</script>

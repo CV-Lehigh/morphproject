@@ -30,6 +30,10 @@ urlpatterns = [
     path('post_process', views.post_process, name='post_process'),
     path('upload',EmployeeImage.as_view(), name = 'upload'),
     path('emp-image/<int:pk>/',EmpImageDisplay.as_view(), name = 'display'),
+    path('nextimage/<int:pk>/',views.NextImage,name='nextimage'),
+    path('uploadMass',views.uploadMass, name='uploadMass'),
+    path('allImages',views.allImages,name='allImages'),
+    path('do_something',views.do_something, name='do_something')
 ]
 #+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
