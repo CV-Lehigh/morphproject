@@ -1,18 +1,21 @@
 ## project structure/django review
 - models.py defines all the object types that the database stores
 - urls.py has all the urls the django webapp responds to
-    - can place an integer instead of '<int:pk>' to look at specific items in the database
+    - can place an integer instead of `<int:pk>` to look at specific items in the database
 - views.py is all the python logic for storing data in the database, serving it, etc.
 - views.py utilizes all the html in the templates folder to display information to and interact with the user
-    - 'task.html' has the javascript that runs the 
+    - `task.html` has the javascript that runs the 
 - forms.py creates form templates for the views to use
 
 ## running the project
 - I'd recommend creating a virtual environment to handle all the requirements
-- 'python3 manage.py runserver'
+- `python3 manage.py runserver`
     - needs a lot of requirements but python should figure out what is needed to run it
         - some requirements are in requirements.txt and requirements3.txt but a lot of those are probably unneeded 
 - now the server should be running on local host and serving it's urls
+- in order to load the database schemas migration is needed
+    - `python3 manage.py makemigrations project`
+    - `python3 manage.py migrate`
 
 ## urls of note/usage of web app
 - the homepage (127.0.0.1:8000 on local host) is a login page for the user
