@@ -1,0 +1,13 @@
+
+{% if task_list %}
+    <ul>
+        <p># username: folder: order: indexStop:</p>
+    {% for emp in task_list %}
+
+        <div>{{emp.pk}},{{emp.user}},{{emp.folder}},{{emp.order}},{{emp.indexStop}}</div>
+        
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No tasks are available.</p>
+{% endif %}

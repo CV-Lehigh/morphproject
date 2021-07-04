@@ -1,0 +1,15 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h1>Name - {{emp.user}}</h1>
+    <h1>Folder - {{emp.folder}}</h1>
+    <h1>Index - {{emp.indexStop}}</h1>
+    <h1>Order - {{emp.order}}</h1>
+    
+    <a href="{% url 'task' %}">Continue</a>
+    
+</body>
+
+</html>

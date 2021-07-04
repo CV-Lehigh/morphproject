@@ -30,3 +30,28 @@ class EmployeeDetails(models.Model):
 class Employee(models.Model):
     name = models.CharField(max_length=50)
     emp_image = models.ImageField(upload_to='upload/')
+
+########## new models for the final version
+
+class Image(models.Model):
+    folder = models.CharField(max_length=50)
+    filename = models.CharField(max_length=50)
+    imageFile = models.ImageField(upload_to='upload/')
+    index = models.IntegerField()
+
+class Folder(models.Model):
+    folder = models.CharField(max_length=50)
+    sex = models.CharField(max_length=50)
+
+class Task(models.Model):
+    folder = models.CharField(max_length=50)
+    indexStop = models.IntegerField()
+    user = models.CharField(max_length=50)
+    order = models.CharField(max_length=50)
+
+class User(models.Model):
+    name = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
+    sexAssign = models.CharField(max_length=50)
+    order = models.CharField(max_length=50)
+    tasksDone = models.IntegerField()

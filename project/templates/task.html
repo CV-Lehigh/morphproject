@@ -1,0 +1,137 @@
+{% load static %}
+
+<div>Task: {{taskfolder}}</div>
+<input type="hidden" value="{{folderlength}}" id="amount" />
+<input type="text" value="0" id="count" style="display: none;"/>
+<input type="button" value="Start" id="starter"/>
+<input type="button" value="Stop" id="stopper" style="display: none;"/>
+<input type="button" value="reset" id="resetter" style="display: none;"/>
+
+<input type="button" value="Image is old" id="old"/>
+
+{% if image_list %}
+    <ul>
+    {% for emp in image_list %}
+
+        <img id = "{{emp.index}}" src="{{emp.imageFile.url}}" alt="Smiley face" width="250" height="250" style="display: none; position:fixed;"> <!-- style="display: none;"-->
+        <!--- <div>{{emp.pk}}</div> --->
+        
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No images are available.</p>
+{% endif %}
+
+<!-- could use a view as the submit for what image was found to be "old" -->
+<!-- use jquery to set its value to the i counter and when submit just have i go through -->
+<!-- for any other variables, like max length I can set that to a invisible input value from django, then fetch it through jquery-->
+<!-- <form method = "post" enctype="multipart/form-data"> 
+    {% csrf_token %} 
+    {{ form.as_p }} 
+    <button type="submit">This image is old!</button> 
+</form> -->
+
+
+
+
+<!-- need to bring in jquery here I guess -->
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<!-- MAKE SURE TO HARD REFRESH IF THIS IS NOT WORKING -->
+<script type='text/javascript'>
+    //get the django variables
+    var taskfolder= '{{taskfolder}}'; 
+    var taskuser = '{{taskuser}}';
+    var taskorder ='{{taskorder}}';
+    var folderlength = '{{folderlength}}';
+
+    if(taskorder=="descending"){
+        $('#amount').val(0);
+        $('#count').val(folderlength);  
+
+        // fix stopping text
+        $('#old').val("Image is young");
+    }
+
+    //from stack overflow
+    var amount=parseInt($('#amount').val());
+    var i = parseInt($('#count').val());
+    var tim;
+
+    if(taskorder=="descending"){
+       i++;
+    }
+    
+
+    function run(){
+        tim = setInterval(function(){
+            //hide is offset by 1 to ensure smooth transition of images
+            // might need to work on edge case for first and last image, but clicking the button still records correct number anyways
+            if(taskorder=="descending"){
+                if((i-1)<=amount){clearInterval(tim); return;}
+                $('#count').val(((--i) + 1));
+                //the images are tagged with their id's so hide when id = i
+                $('#'+i).show();
+                $('#'+(i+2)).hide();
+                //$('#submitter').attr("href", ");
+            }
+            else{
+                if(i>=amount){clearInterval(tim); return;}
+                $('#count').val(++i);
+                //the images are tagged with their id's so hide when id = i
+                $('#'+i).show();
+                $('#'+(i-2)).hide();
+                //$('#submitter').attr("href", ");
+            }
+
+        },1000);        
+    }
+
+    // don't runt the photos immediately
+    //run();
+    // hide the buttons
+    //$('#amount').hide();
+    //$('#stopper').hide();
+    //$('#resetter').hide();
+    //$('#count').hide();
+
+    $('#old').click(function(){
+        $.ajax({
+        url:"/submit_task",
+        type: "POST",
+        data: {folder: taskfolder, indexStop: $('#count').val(), user:taskuser, order:taskorder},
+        success:function(response){ 
+            //return response.json; 
+            console.log(response.id);
+            //html(response);
+            //window.location.replace('/post_process');
+            window.location.replace('/task/'+response.id+'/');
+        },
+        complete:function(){},
+        error:function (xhr, textStatus, thrownError){
+            alert("error doing something");
+        }
+    });
+    });
+
+    $('#stopper').click(function(){        
+        clearInterval(tim);
+    });
+
+    $('#resetter').click(function(){    
+        clearInterval(tim);  
+        if(taskorder=="descending"){  
+            i=folderlength;
+            $('#count').val(i);
+        }
+        else{
+            i=0;
+            $('#count').val(i);
+        }
+    });
+
+    $('#starter').click(function(){        
+    clearInterval(tim);
+    $('#starter').val("in progress");
+        run();
+    });
+</script>

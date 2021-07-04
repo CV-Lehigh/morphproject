@@ -1,0 +1,15 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h1>Name - {{emp.filename}}</h1>
+    <h1>Folder - {{emp.folder}}</h1>
+    <h1>Index - {{emp.index}}</h1>
+    <img src="{{emp.imageFile.url}}" alt="Smiley face" width="250" height="250">
+    <br />
+    <a href="{% url 'index' %}">Go Back!!!</a>
+    <a href=" {% url 'nextimage' pk=emp.pk %}">Continue</a>
+</body>
+
+</html>

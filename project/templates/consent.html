@@ -168,7 +168,8 @@ mkite@bsu.edu
         </div>
 
         <br><hr>
-        <form class="form-check" method='POST' action='instruction'>
+        <!--- <form class="form-check" method='POST' action='instruction'> --->
+        <form class="form-check" method='POST' action='task'></form>
         {% csrf_token %}
             <input class="form-check-input" type="radio" value="true" id="consent-positive" name="consent" required>
             <label class="form-check-label" for="consent-positive">

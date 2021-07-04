@@ -1,6 +1,6 @@
 
 
-<input type="hidden" value="25" id="amount"/>
+<input type="hidden" value="50" id="amount"/>
 <input type="text" value="0" id="count"/>
 <input type="button" value="Start" id="starter"/>
 <input type="button" value="Stop" id="stopper"/>
@@ -9,8 +9,8 @@
     <ul>
     {% for emp in image_list %}
 
-        <img id = "{{emp.pk}}" src="{{emp.emp_image.url}}" alt="Smiley face" width="250" height="250" style="display: none;">
-        <div>{{emp.pk}}</div>
+        <img id = "{{emp.pk}}" src="{{emp.imageFile.url}}" alt="Smiley face" width="250" height="250" style="display: none;">
+        <!--- <div>{{emp.pk}}</div> --->
         
     {% endfor %}
     </ul>
@@ -61,7 +61,7 @@
         data: {name: "tom", age: 12},
         success:function(response){ 
             //return response.json(); 
-            window.location.replace('/emp-image/12/');
+            window.location.replace('/image/'+$('#count').val()+'/');
         },
         complete:function(){},
         error:function (xhr, textStatus, thrownError){

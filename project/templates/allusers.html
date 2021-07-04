@@ -1,0 +1,12 @@
+
+{% if user_list %}
+    <ul>
+    {% for emp in user_list %}
+
+        <p>#{{emp.pk}} username:{{emp.name}} pw:{{emp.password}} sexAssign:{{emp.sexAssign}} order:{{emp.order}} tasksDone:{{emp.tasksDone}}</p>
+        
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No images are available.</p>
+{% endif %}

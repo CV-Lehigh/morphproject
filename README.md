@@ -1,4 +1,5 @@
 ## running the project
+- go into virtual enviornment
 - python3 manage.py runserver
 
 ## for production
