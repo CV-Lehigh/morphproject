@@ -4,7 +4,7 @@
     - can place an integer instead of `<int:pk>` to look at specific items in the database
 - views.py is all the python logic for storing data in the database, serving it, etc.
 - views.py utilizes all the html in the templates folder to display information to and interact with the user
-    - `task.html` has the javascript that runs the 
+    - `task.html` has the javascript that runs the task logic
 - forms.py creates form templates for the views to use
 
 ## running the project
